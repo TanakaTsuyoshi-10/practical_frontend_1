@@ -1,4 +1,4 @@
-// File: /Users/tanakatsuyoshi/Desktop/Tech0/SREP3_講義資料/STEP3/3-3デプロイ/frontend/src/app/page.jsx
+// File: /Users/tanakatsuyoshi/Desktop/Tech0/SREP3_講義資料/STEP3/3-3デプロイ/practical_frontend/src/app/page.jsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
