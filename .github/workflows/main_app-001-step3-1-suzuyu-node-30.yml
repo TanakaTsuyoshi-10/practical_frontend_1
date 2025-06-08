@@ -62,11 +62,7 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      # ✅ Azureログインステップ追加
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BEB8480566DA4681909308FC6F715617 }}
+      
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
