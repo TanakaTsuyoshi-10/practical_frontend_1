@@ -6,16 +6,22 @@ import { useEffect, useState } from "react";
 
 export default function ConfirmPage() {
   const router = useRouter();
-  const customer_id = useSearchParams().get("customer_id");
+  const searchParams = useSearchParams();
+  const customer_id = searchParams.get("customer_id");
   const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
+    if (!customer_id) return; // ✅ nullチェックを追加
     const fetchAndSetCustomer = async () => {
-      const customerData = await fetchCustomer(customer_id);
-      setCustomer(customerData);
+      try {
+        const customerData = await fetchCustomer(customer_id);
+        setCustomer(customerData);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
     };
     fetchAndSetCustomer();
-  }, []);
+  }, [customer_id]); // ✅ 依存配列に customer_id を追加
 
   return (
     <>
@@ -23,8 +29,12 @@ export default function ConfirmPage() {
         <div className="alert alert-success p-4 text-center">
           正常に作成しました
         </div>
-        <OneCustomerInfoCard {...customer} />
-        <button onClick={() => router.push("./../../customers")}>
+        {customer ? (
+          <OneCustomerInfoCard {...customer} />
+        ) : (
+          <div className="text-center p-4">読込中...</div>
+        )}
+        <button onClick={() => router.push("/customers")}>
           <div className="btn btn-primary m-4 text-2xl">戻る</div>
         </button>
       </div>
