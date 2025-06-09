@@ -1,9 +1,9 @@
-// server.js（Next.js アプリの本番起動用）
+// server.js
 const { createServer } = require('http');
 const next = require('next');
 
 const port = parseInt(process.env.PORT || '3000', 10);
-const dev = false;  // Azureでは本番モードで起動するため false
+const dev = false;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
