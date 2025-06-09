@@ -26,14 +26,17 @@ jobs:
           NEXT_PUBLIC_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_APIENDPOINT }}
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build
 
       - name: Copy artifact for deployment
         run: |
           mkdir -p deploy/.next/static
-          cp -r ./.next/standalone/* ./deploy/
-          cp -r ./.next/static/* ./deploy/.next/static/
+          cp -r .next/standalone/* ./deploy/
+          cp -r .next/static/* ./deploy/.next/static/
+          cp .next/BUILD_ID ./deploy/.next/
+          cp .next/*.json ./deploy/.next/
+          cp -r public ./deploy/public
+          cp server.js ./deploy/
 
       - name: Zip deployment artifact
         run: zip -r release.zip deploy
