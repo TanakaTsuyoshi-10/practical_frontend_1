@@ -4,7 +4,7 @@ require('dotenv').config();
 const nextConfig = {
   output: 'standalone',
   env: {
-    API_ENDPOINT: process.env.API_ENDPOINT,
+    NEXT_PUBLIC_API_ENDPOINT: process.env.NEXT_PUBLIC_API_ENDPOINT,  // ← 修正ポイント
   },
 };
 
