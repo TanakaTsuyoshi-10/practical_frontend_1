@@ -14,11 +14,14 @@ const createCustomer = async (formData) => {
     gender: creating_gender,
   });
 
-  const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + `/customers`, {
+  const apiUrl = new URL("/customers", process.env.NEXT_PUBLIC_API_ENDPOINT);
+
+  const res = await fetch(apiUrl.toString(), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: body_msg,
   });
+
   if (!res.ok) {
     throw new Error("Failed to create customer");
   }
